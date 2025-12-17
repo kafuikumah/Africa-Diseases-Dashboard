@@ -1,0 +1,75 @@
+.sidebar {
+    width: 260px;
+    background-color: hsl(var(--bg-secondary));
+    border-right: 1px solid hsl(var(--border-light));
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid hsl(var(--border-light));
+}
+
+.logoIcon {
+    width: 32px;
+    height: 32px;
+    background: hsl(var(--brand-primary));
+    border-radius: var(--radius-md);
+}
+
+.logoText {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: hsl(var(--text-primary));
+}
+
+.nav {
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    color: hsl(var(--text-secondary));
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.navItem:hover {
+    background-color: hsl(var(--bg-primary));
+    color: hsl(var(--text-primary));
+}
+
+.active {
+    background-color: hsl(var(--brand-light));
+    color: hsl(var(--brand-dark));
+}
+
+[data-theme='dark'] .active {
+    background-color: hsl(var(--brand-dark));
+    color: hsl(var(--brand-light));
+}
+
+.footer {
+    padding: 1.5rem;
+    border-top: 1px solid hsl(var(--border-light));
+}
+
+.footerText {
+    font-size: 0.75rem;
+    color: hsl(var(--text-muted));
+}

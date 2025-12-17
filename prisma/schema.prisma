@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Country {
+  id          String   @id @default(uuid())
+  name        String
+  isoCode     String   @unique // ISO 3166-1 alpha-3
+  population  Int      @default(0)
+  region      String?  // e.g. "East Africa", "West Africa"
+  latitude    Float?
+  longitude   Float?
+  
+  stats       DiseaseStat[]
+  funding     Funding[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Disease {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  symptoms    String?
+  treatment   String?
+  prevention  String?
+  
+  stats       DiseaseStat[]
+  funding     Funding[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DiseaseStat {
+  id          String   @id @default(uuid())
+  year        Int
+  
+  countryId   String
+  country     Country  @relation(fields: [countryId], references: [id])
+  
+  diseaseId   String
+  disease     Disease  @relation(fields: [diseaseId], references: [id])
+
+  cases       Int      @default(0) // Confirmed cases
+  deaths      Int      @default(0)
+  recovered   Int      @default(0)
+  active      Int      @default(0)
+  
+  @@unique([countryId, diseaseId, year])
+}
+
+model Funding {
+  id          String   @id @default(uuid())
+  year        Int
+  
+  countryId   String
+  country     Country  @relation(fields: [countryId], references: [id])
+  
+  diseaseId   String
+  disease     Disease  @relation(fields: [diseaseId], references: [id])
+
+  domestic    Float    @default(0) // In USD
+  international Float  @default(0) // In USD (Aid)
+  
+  @@unique([countryId, diseaseId, year])
+}

@@ -1,0 +1,19 @@
+.mapContainer {
+    height: 500px;
+    /* Default height */
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid hsl(var(--border-light));
+    z-index: 1;
+}
+
+.leafletMap {
+    background: hsl(var(--bg-secondary));
+    z-index: 1;
+}
+
+/* Dark mode adjustment for map tiles */
+[data-theme='dark'] .tileLayer {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}

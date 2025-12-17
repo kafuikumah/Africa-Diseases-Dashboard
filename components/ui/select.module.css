@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(var(--text-secondary));
+}
+
+.select {
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-md);
+    border: 1px solid hsl(var(--border-medium));
+    background-color: hsl(var(--bg-card));
+    color: hsl(var(--text-primary));
+    font-size: 0.875rem;
+    outline: none;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.select:focus {
+    border-color: hsl(var(--brand-primary));
+    box-shadow: 0 0 0 2px hsl(var(--brand-light));
+}
