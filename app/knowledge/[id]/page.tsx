@@ -4,6 +4,8 @@ import db from '@/lib/db'
 import { ArrowLeft, Shield, Stethoscope, AlertCircle } from 'lucide-react'
 import { notFound } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 export default async function DiseaseDetailPage({ params }: { params: { id: string } }) {
     const disease = await db.disease.findUnique({
         where: { id: params.id }

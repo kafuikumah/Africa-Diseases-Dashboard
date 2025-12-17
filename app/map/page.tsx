@@ -1,6 +1,8 @@
 import db from '@/lib/db'
 import MapPageClient from './MapPageClient'
 
+export const dynamic = 'force-dynamic'
+
 export default async function MapPage() {
     const diseases = await db.disease.findMany({
         orderBy: { name: 'asc' },

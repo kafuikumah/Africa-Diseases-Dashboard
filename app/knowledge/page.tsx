@@ -2,6 +2,8 @@ import Link from 'next/link'
 import db from '@/lib/db'
 import { ArrowRight, Activity } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default async function KnowledgeBasePage() {
     const diseases = await db.disease.findMany({
         orderBy: { name: 'asc' }
