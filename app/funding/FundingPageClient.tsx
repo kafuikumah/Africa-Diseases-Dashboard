@@ -14,6 +14,12 @@ interface FundingData {
     disease: { name: string }
 }
 
+interface ChartDataItem {
+    name: string
+    domestic: number
+    international: number
+}
+
 export default function FundingPageClient() {
     const [fundingData, setFundingData] = useState<FundingData[]>([])
     const [selectedYear, setSelectedYear] = useState<string>('2023')
@@ -26,7 +32,7 @@ export default function FundingPageClient() {
     }, [selectedYear])
 
     // Aggregate data by country
-    const chartData = fundingData.reduce((acc: any[], curr) => {
+    const chartData = fundingData.reduce((acc: ChartDataItem[], curr) => {
         const existing = acc.find(item => item.name === curr.country.name)
         if (existing) {
             existing.domestic += curr.domestic

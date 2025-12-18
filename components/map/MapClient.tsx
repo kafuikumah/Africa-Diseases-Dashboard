@@ -15,25 +15,28 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
+interface Stat {
+    countryId?: string
+    cases: number
+    deaths: number
+    recovered: number
+    [key: string]: any
+}
+
 interface MapClientProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    stats?: any[] // Simplified for now, could be more specific like Array<{ countryCode: string; value: number; }>
+    stats?: Stat[]
     activeMetric?: string
     onCountryClick?: (countryCode: string) => void
 }
 
 // Use 'any' cast to bypass type errors with React 18/Next.js mismatch
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MapContainerAny = MapContainer as any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const TileLayerAny = TileLayer as any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GeoJSONAny = GeoJSON as any
 
 export default function MapClient({ stats, activeMetric = 'cases', onCountryClick }: MapClientProps) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const unusedParams = [stats, activeMetric]
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [geoData, setGeoData] = useState<any>(null)
 
     useEffect(() => {

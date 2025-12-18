@@ -4,18 +4,29 @@ import React, { useState, useEffect } from 'react'
 import Map from '@/components/map/Map'
 import { Select } from '@/components/ui/Select'
 
-interface MapPageClientProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    diseases: any[]
+interface Disease {
+    id: string
+    name: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface MapPageClientProps {
+    diseases: Disease[]
+}
+
+interface Stat {
+    id?: string
+    cases: number
+    deaths: number
+    recovered: number
+    international_funding?: number
+    [key: string]: any // To allow dynamic metric access
+}
+
 export default function MapPageClient({ diseases }: MapPageClientProps) {
     const [selectedDisease, setSelectedDisease] = useState<string>(diseases[0]?.id || '')
     const [selectedMetric, setSelectedMetric] = useState('cases')
     const [selectedYear, setSelectedYear] = useState('2023')
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [stats, setStats] = useState<any[]>([])
+    const [stats, setStats] = useState<Stat[]>([])
 
     useEffect(() => {
         if (!selectedDisease) return

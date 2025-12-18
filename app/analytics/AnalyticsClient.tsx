@@ -21,8 +21,12 @@ interface AggregatedYearData {
     recovered: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function AnalyticsClient({ diseases }: { diseases: any[] }) {
+interface Disease {
+    id: string;
+    name: string;
+}
+
+export default function AnalyticsClient({ diseases }: { diseases: Disease[] }) {
     const [selectedDisease, setSelectedDisease] = useState(diseases[0]?.id || '')
     const [trendData, setTrendData] = useState<AggregatedYearData[]>([])
 
